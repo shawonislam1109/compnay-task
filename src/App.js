@@ -1,9 +1,18 @@
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
+import Home from './component/Home/Home';
 
 function App() {
+  const route = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />
+    }
+  ])
   return (
     <div >
-      <h1 className='text-5xl'>this is the heading point</h1>
+      <RouterProvider router={route}
+      ></RouterProvider>
     </div>
   );
 }
