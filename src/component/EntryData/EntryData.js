@@ -8,7 +8,7 @@ const EntryData = () => {
     const { data: userData = [], refetch, isLoading } = useQuery({
         queryKey: ['userData', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/userDatas?email=${user?.email}`)
+            const res = await fetch(`https://company-task-server.vercel.app/userDatas?email=${user?.email}`)
             const data = res.json();
             console.log(data)
             return data;

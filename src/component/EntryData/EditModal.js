@@ -24,7 +24,7 @@ const EditModal = ({ update, refetch }) => {
             email: user?.email
         }
         console.log(UserData)
-        fetch(`http://localhost:5000/UpdateData/${update._id}`, {
+        fetch(`https://company-task-server.vercel.app/UpdateData/${update._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

@@ -28,7 +28,7 @@ const Home = () => {
         }
         console.log(UserData)
 
-        fetch('http://localhost:5000/userData', {
+        fetch('https://company-task-server.vercel.app/userData', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
