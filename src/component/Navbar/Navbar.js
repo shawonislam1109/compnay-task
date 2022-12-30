@@ -33,12 +33,12 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div className="navbar-end">
+                    <div className=" ">
                         {
                             user?.uid ?
 
                                 <>
-                                    <div className='flex justify-around items-center'>
+                                    <div className='flex  items-center'>
                                         <Link to='/login'><button onClick={logingOUt} className=' btm-nav-xs md:btm-nav-sm btn btn-active btn-error'>Log Out</button></Link>
                                         <div className="avatar">
                                             <div className="w-12 md:w-16 rounded-full ml-2">
@@ -49,7 +49,7 @@ const Navbar = () => {
                                 </>
                                 :
                                 <>
-                                    <div className='flex justify-around items-center'>
+                                    <div className='flex  items-center'>
                                         <Link to='/login'><button className=' btn-nav-xs md:btm-nav-sm btn btn-active btn-error'>Log In</button></Link>
                                         <Link to='/signup'><button className='btn-nav-xs md:btm-nav-sm btn btn-active btn-error md:ml-3 ml-2'>Sign Up</button></Link>
                                     </div>

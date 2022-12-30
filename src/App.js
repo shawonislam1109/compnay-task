@@ -10,6 +10,7 @@ import {
 import EntryData from './component/EntryData/EntryData';
 import Login from './component/Login/Login'
 import SignUp from './component/signUp/SignUp';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
   const queryClient = new QueryClient()
@@ -25,7 +26,7 @@ function App() {
         },
         {
           path: '/userData',
-          element: <EntryData />
+          element: <PrivateRoute><EntryData /></PrivateRoute>
         },
         {
           path: '/login',
