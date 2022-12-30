@@ -3,8 +3,16 @@ import './App.css';
 import Home from './component/Home/Home';
 import Main from './Layout/Main';
 import ErrorPage from './component/ErrorPage/ErrorPage';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import EntryData from './component/EntryData/EntryData';
+import Login from './component/Login/Login'
+import SignUp from './component/signUp/SignUp';
 
 function App() {
+  const queryClient = new QueryClient()
   const route = createBrowserRouter([
     {
       path: '/',
@@ -14,14 +22,29 @@ function App() {
         {
           path: '/',
           element: <Home />
+        },
+        {
+          path: '/userData',
+          element: <EntryData />
+        },
+        {
+          path: '/login',
+          element: <Login />
+        },
+        {
+          path: '/signup',
+          element: <SignUp />
         }
       ]
     }
   ])
   return (
+
     <div >
-      <RouterProvider router={route}
-      ></RouterProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={route}
+        ></RouterProvider>
+      </QueryClientProvider>
     </div>
   );
 }

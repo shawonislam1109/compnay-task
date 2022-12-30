@@ -1,23 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import './Home.css'
-// import 'sweetalert2/src/sweetalert2.scss'
-import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
-const Home = () => {
+const EditModal = ({ update, refetch }) => {
     const { user } = useContext(AuthContext)
     const [checking, setChecking] = useState(false)
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const sweetAlert = () => {
         Swal.fire(
-            'Successfully your Data added ',
+            'Successfully  Update you data ',
             'You clicked the button!',
             'success'
         )
     }
-
     const addTaskSubmit = (data) => {
 
         const UserData = {
@@ -27,33 +24,33 @@ const Home = () => {
             email: user?.email
         }
         console.log(UserData)
-
-        fetch('http://localhost:5000/userData', {
-            method: 'POST',
+        fetch(`http://localhost:5000/UpdateData/${update._id}`, {
+            method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+
             },
             body: JSON.stringify(UserData)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                reset()
-                sweetAlert();
+                refetch();
+                sweetAlert()
+                reset();
             })
     }
     const CheckBox = (data) => {
         setChecking(data.target.checked)
     }
-    return (
-        <div className='mx-3 md:mx-0 '>
-            <div className=' background relative  py-16 rounded-lg shadow-2xl  md:w-2/3 mx-auto px-10  mt-28'>
-                <div className='md:w-9/12 mx-auto px-10 md:px-0 mb-10'>
-                    <div className='flex justify-center items-center'>
-                        <img className=' border-4 border-violet-600 w-28 h-28 md:w-40 md:h-40 rounded-full absolute md:-top-20 -top-12' src="https://assets.propertyshelf.com/nicaragua/2-fill-up-form.png/image" alt="" />
-                        <h1 className='text-center text-2xl md:text-3xl mt-10 font-bold'><span className='text-violet-500'>Fill</span> Up Form </h1>
-                    </div>
 
+    return (
+        <div>
+
+            <input type="checkbox" id="Edit_modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative">
+                    <label htmlFor="Edit_modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <div className='flex justify-center items-center'>
                         <form className='md:w-2/3' onSubmit={handleSubmit(addTaskSubmit)}>
                             <div className="form-control w-full   ">
@@ -140,4 +137,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default EditModal;
